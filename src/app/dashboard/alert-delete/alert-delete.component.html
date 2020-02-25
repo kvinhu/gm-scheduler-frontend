@@ -1,0 +1,17 @@
+<div>
+  <h1
+    mat-dialog-title
+
+    fxLayoutGap="10"
+    class="nav"
+    color="primary"
+  >
+    Are you sure you want to delete {{ data.view ? "service" : "holiday" }} <u style="background-color:orange;">{{ (data.view ? data.view.name : data.modified.name) | uppercase }}</u>?
+  </h1>
+  <div mat-dialog-content fxLayout="row" fxLayoutAlign="center center" style="padding:30px;">
+    <button mat-button style="background-color:orange;margin:10px;" [mat-dialog-close]="data.view ? data.view : data.modified" cdkFocusInitial>
+      {{ "Delete" | uppercase }}
+    </button>
+    <button mat-button style="background-color:lightgrey;margin:10px;" mat-dialog-close>{{ "Cancel" | uppercase }}</button>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<mat-toolbar
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="10"
+  class="nav"
+  color="primary"
+>
+  <div class="title"><span>GM Scheduler - Admin Portal</span></div>
+  <span class="flex-spacer"></span>
+  <div>
+    <button
+      mat-raised-button
+      style="margin:3px;background:white;"
+      (click)="openDialog()"
+    >
+      <mat-icon aria-hidden="false">add</mat-icon>
+      {{ "Create Service" | uppercase }}
+    </button>
+    <button
+      mat-raised-button
+      style="margin:3px;background:white;"
+      (click)="alertDelete()"
+    >
+      <mat-icon aria-hidden="false">delete</mat-icon>
+      {{ "Delete Service" | uppercase }}
+    </button>
+  </div>
+  <button
+    mat-raised-button
+    style="background:orange;position:fixed;bottom:40px;right:0px;padding:10px 15px;"
+    (click)="logout()"
+  >
+    <mat-icon aria-hidden="false">directions_run</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

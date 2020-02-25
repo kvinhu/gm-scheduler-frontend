@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Create a Line Of Service</h1>
+<form novalidate [formGroup]="losForm">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field *ngFor="let key of los">
+      <input
+        *ngIf="key != 'description'"
+        matInput
+        [placeholder]="key | titlecase"
+        [required]="key == 'name' || key == 'location'"
+        type="text"
+        [formControlName]="key"
+      />
+      <textarea
+        *ngIf="key == 'description'"
+        matInput
+        [placeholder]="key | titlecase"
+        type="text"
+        [formControlName]="key"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+      ></textarea>
+      <mat-error *ngIf="formErrors[key]">
+            {{ formErrors[key] }}
+        </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button [mat-dialog-close]="losForm.value" cdkFocusInitial [disabled]="losForm.invalid">
+      Submit
+    </button>
+  </div>
+</form>

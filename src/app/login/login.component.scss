@@ -1,0 +1,97 @@
+$custom-primary: #fb8c00;
+$custom-disabled: #ffcc80;
+
+.cover {
+  object-fit: cover;
+  object-position: 100% 30%;
+}
+
+.disabledButton {
+  background: $custom-disabled;
+}
+
+.form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  min-width: 300px;
+  max-width: 450px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.loginButton {
+  background: $custom-primary;
+}
+
+.login-component {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -290px;
+  background: white;
+  z-index: 100;
+  border: 1px solid black;
+  max-width: 500px;
+  min-width: auto;
+  height: 600px;
+  border-radius: 20px;
+  border: 2px solid lightslategrey;
+}
+
+.login-form {
+  height: 100%;
+  padding: 0%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  overflow: hidden hidden;
+}
+
+.login-wrapper {
+  width: 100%;
+}
+
+.logo {
+  margin: 50px;
+}
+
+mat-error {
+  color: $custom-primary;
+}
+
+.top-text {
+  position: absolute;
+  left: 0;
+  top: 49%;
+  transform: translateY(-51%);
+  z-index: 100;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
+}
+
+.bottom-text {
+  position: absolute;
+  left: 0;
+  font-size: 2.75em;
+  color: $custom-primary;
+  text-shadow: black;
+}
+
+@media only screen 
+and (max-width: 1366px) {
+  .top-text, .bottom-text { display: none; }
+  .login-component {
+    border: none;
+    width: 400px;
+  }
+}
+
+

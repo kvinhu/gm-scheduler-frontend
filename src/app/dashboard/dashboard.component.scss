@@ -1,0 +1,135 @@
+$custom-active: #ffcc80;
+$current-active: rgb(248, 246, 239);
+
+.active {
+    background: $current-active;
+}
+
+.button1 {
+    background: orange;
+    margin: 10px;
+}
+
+.button2 {
+    background: lightgrey;
+    margin: 10px;
+}
+
+mat-error {
+    width: 150px;
+    overflow-wrap: break-word;
+}
+
+.container {
+    padding: 100px;
+}
+
+.inputField {
+    border-bottom: transparent;
+    width: 170px;
+    padding: 5px;
+    overflow-wrap: break-word;
+}
+
+.invisible {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  font-size: 2em;
+}
+
+table {
+  width: 100%;
+  padding: 20px;
+}
+
+.table-container {
+    padding: 50px;
+}
+
+.table-content {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.table-header {    
+    padding: 10px 20px 10px 20px;
+}
+
+th, td, .cell {
+    display: flex;
+    justify-content: center;
+    min-width: 170px;
+    max-width: auto;
+    border-bottom: transparent;
+    padding: 10px;
+    overflow-wrap: break-word;
+}
+
+.title {
+    font-size: 2.5em;
+    color: white;
+}
+
+.row:hover {
+    background: $current-active;
+}
+
+@media only screen 
+and (max-width: 1366px) {
+    .modified-table {
+        display: block !important;
+        overflow: scroll;
+    }
+
+    .table-container {
+        padding: 30px;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen 
+and (max-width: 1024px) {
+
+    .standard-table {
+        display: block !important;
+        overflow: scroll;
+    }
+
+    .table-content {
+        font-size: 1.2em;
+    }
+
+}
+
+@media only screen 
+and (max-width: 788px) {
+    .container {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .table-container {
+        padding: 0px;
+    }
+
+    .title span {
+        display: none;
+    }
+
+    .title:after{
+        content: 'GM';
+    }
+}
+
+

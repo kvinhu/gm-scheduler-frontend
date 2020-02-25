@@ -1,0 +1,29 @@
+
+<app-toolbar
+  (updateServices)="receiveMessage($event)"
+  (newView)="changeViewToCreated($event)"
+  [view]="view"
+></app-toolbar>
+<div *ngIf="loggedIn" class="container">
+  <mat-form-field fxLayout="row" fxLayoutAlign="center center">
+    <mat-label>Lines of Service</mat-label>
+    <mat-select [(ngModel)]="view" (change)="onChange($event)">
+      <mat-option *ngFor="let service of services" [value]="service">
+        {{ service.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <app-standard
+    [services]="services"
+    [view]="view"
+    (updateServices)="receiveMessage($event)"
+  ></app-standard>
+
+  <app-modified
+    [services]="services"
+    [view]="view"
+    (updateServices)="receiveMessage($event)"
+  ></app-modified>
+</div>
+

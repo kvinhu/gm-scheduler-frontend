@@ -1,0 +1,87 @@
+<h1 mat-dialog-title>Create a Holiday</h1>
+<form novalidate [formGroup]="newModifiedForm">
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="center center">
+    <div *ngFor="let key of m_fields">
+      <mat-form-field *ngIf="key == 'name'">
+        <input
+          matInput
+          [placeholder]="key | titlecase"
+          type="text"
+          [formControlName]="key"
+        />
+        <mat-error
+          *ngIf="formErrors[key]"
+          style="color:orange;font-size:0.9em;"
+        >
+          {{ formErrors[key] }}
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="key == 'startTime' || key == 'endTime'">
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="key == 'startTime' ? 'Start Time' : 'End Time'"
+            aria-label="Editable dial"
+            [ngxTimepicker]="editableDial"
+            [formControlName]="key"
+            [format]="24"
+            readonly
+          />
+        </mat-form-field>
+        <ngx-material-timepicker
+          #editableDial
+          [enableKeyboardInput]="true"
+        ></ngx-material-timepicker>
+        <mat-error
+          *ngIf="formErrors[key]"
+          style="color:orange;font-size:0.7em;"
+        >
+          {{ formErrors[key] }}
+        </mat-error>
+      </div>
+      <div *ngIf="key == 'date'">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Choose a date"
+            [formControlName]="key"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-error
+          *ngIf="formErrors[key]"
+          style="color:orange;font-size:0.7em;"
+        >
+          {{ formErrors[key] }}
+        </mat-error>
+      </div>
+      <div *ngIf="key == 'allDay'">
+        <mat-slide-toggle [formControlName]="key" [checked]="key">
+          Closed All Day?</mat-slide-toggle
+        >
+        <mat-error
+          *ngIf="formErrors.allDay"
+          style="color:orange;font-size:0.7em;"
+        >
+          {{ formErrors.allDay }}
+        </mat-error>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button mat-dialog-close>Close</button>
+    <button
+      mat-button
+      [mat-dialog-close]="newModifiedForm.value"
+      cdkFocusInitial
+      [disabled]="newModifiedForm.invalid || !valid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

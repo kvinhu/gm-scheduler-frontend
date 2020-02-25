@@ -1,0 +1,44 @@
+<div class="login-form">
+  <div class="login-wrapper">
+    <img
+      src="../../assets/gm-cover-img.jpg"
+      class="cover"
+      width="100%"
+      height="50%"
+    />
+    <div class="top-text">GM Scheduler</div>
+    <div class="bottom-text">Hosted by LivePerson</div>
+    <div class="login-component">
+      <form
+        class="form"
+        novalidate
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <h2>{{ "Login" | uppercase }}</h2>
+        <mat-error *ngIf="formErrors.invalid" style="color:red;">
+          {{ formErrors.invalid }}
+        </mat-error>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Account Number:</mat-label>
+          <input matInput required formControlName="account" type="text" />
+          <mat-error *ngIf="formErrors.account">
+            {{ formErrors.account }}
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-button
+          [ngClass]="disabled ? 'disabledButton' : 'loginButton'"
+          [disabled]="loginForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+      <div class="logo">
+        <img src="/assets/liveperson-logo.png" />
+      </div>
+    </div>
+  </div>
+</div>

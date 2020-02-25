@@ -1,0 +1,165 @@
+<div class="table-container">
+  <div class="table-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="table-content">{{ "Holidays" | uppercase }}</div>
+    <button
+      mat-raised-button
+      style="background:lightgrey;margin:10px;"
+      (click)="openDialog()"
+    >
+      Add Holiday
+    </button>
+  </div>
+  <table
+    mat-table
+    *ngIf="view"
+    class="modified-table mat-elevation-z8"
+    [dataSource]="view.modified_days"
+  >
+    <ng-container
+      *ngFor="let column of columns2"
+      [matColumnDef]="column.columnDef"
+    >
+      <th mat-header-cell *matHeaderCellDef>
+        {{ column.header }}
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <div *ngIf="md_edit != row" class="cell">{{ column.cell(row) }}</div>
+        <form
+          class="form"
+          *ngIf="md_edit == row"
+          novalidate
+          [formGroup]="modifiedForm"
+          (ngSubmit)="onSubmit(modifiedForm)"
+        >
+          <div *ngIf="column.columnDef == 'name'" class="cell">
+            {{ column.cell(row) }}
+          </div>
+          <div
+            *ngIf="
+              column.columnDef == 'startTime' || column.columnDef == 'endTime'
+            "
+            class="cell-container"
+          >
+            <mat-error
+              *ngIf="formErrors[column.columnDef]"
+              style="color:orange;font-size:0.9em;"
+            >
+              {{ formErrors[column.columnDef] }}
+            </mat-error>
+            <mat-form-field appearance="outline" class="inputField">
+              <input
+                matInput
+                [placeholder]="
+                  column.columnDef == 'startTime' ? 'Start Time' : 'End Time'
+                "
+                aria-label="Editable dial"
+                [ngxTimepicker]="editableDial"
+                [formControlName]="column.columnDef"
+                [value]="column.cell(row)"
+                [format]="24"
+                readonly
+              />
+            </mat-form-field>
+            <ngx-material-timepicker
+              #editableDial
+              [enableKeyboardInput]="true"
+            ></ngx-material-timepicker>
+          </div>
+          <div *ngIf="column.columnDef == 'date'" class="cell-container">
+            <mat-error
+              *ngIf="formErrors[column.columnDef]"
+              style="color:orange;font-size:0.9em;"
+            >
+              {{ formErrors[column.columnDef] }}
+            </mat-error>
+            <mat-form-field class="inputField">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Choose a date"
+                [formControlName]="column.columnDef"
+                [value]="column.cell(row)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div *ngIf="column.columnDef == 'allDay'" class="cell-container">
+            <mat-error
+              *ngIf="formErrors[column.columnDef]"
+              style="color:orange;font-size:0.9em;"
+            >
+              {{ formErrors[column.columnDef] }}
+            </mat-error>
+            <mat-slide-toggle
+              [formControlName]="column.columnDef"
+              [checked]="column.cell(row)"
+            ></mat-slide-toggle>
+          </div>
+        </form>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-raised-button
+          style="background:orange;margin: 10px;"
+          *ngIf="md_edit != row"
+          (click)="toggle(row)"
+          class="inputField"
+        >
+          Edit
+        </button>
+
+        <div *ngIf="md_edit == row" class="inputField" fxLayout="row">
+          <button
+            mat-raised-button
+            style="background:orange;margin:2px;"
+            (click)="onSubmit(modifiedForm)"
+            [disabled]="modifiedForm.invalid || !valid"
+          >
+            Submit
+          </button>
+          <button
+            mat-raised-button
+            style="background:lightgrey;margin: 2px;"
+            (click)="clearEdit()"
+          >
+            Cancel
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <div fxLayout="row" fxLayoutAlign="center center" class="inputField">
+          <button mat-button (click)="delete(row)" class="button2">
+            <mat-icon aria-hidden="false">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedColumns2"
+      fxLayout="row"
+      fxLayoutAlign="space-evenly center"
+    ></tr>
+
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns2"
+      [class]="md_edit == row ? 'row active' : 'row'"
+      fxLayout="row"
+      fxLayoutAlign="space-evenly center"
+    ></tr>
+  </table>
+</div>
