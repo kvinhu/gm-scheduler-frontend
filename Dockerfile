@@ -1,5 +1,5 @@
 # install OS layer to your dockerfile
-FROM centos:7
+FROM node:12.14-alpine3.11 as builder
 
 # Label your dockerfile
 LABEL authors="Kevin Hu khu@liveperson.com"
