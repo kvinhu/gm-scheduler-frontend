@@ -48,7 +48,7 @@ pipeline {
               // wipe old contents if still there
               deleteDir()
             }
-            sh "docker container cp extractbuild:/usr/src/app/dist/ ."
+            sh "docker container cp extractbuild://liveperson/code/na-gm_scheduler-frontend/dist/ ."
             sh "docker container rm -f extractbuild"
           }
         }
