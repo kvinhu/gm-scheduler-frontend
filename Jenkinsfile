@@ -42,7 +42,7 @@ pipeline {
               scmVars = checkout scm
             }
             sh "docker container rm -f extractbuild || true"
-            sh "docker build -t gm-scheduler-frontend ."
+            sh "docker build --target builder -t gm-scheduler-frontend ."
             sh "docker container create --name extractbuild gm-scheduler-frontend"
             dir('dist') {
               // wipe old contents if still there
