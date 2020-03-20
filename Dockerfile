@@ -32,5 +32,4 @@ COPY . .
 RUN yarn install && yarn cache clean
 
 # start server and provide port that you will expose
-EXPOSE 3000
 CMD yarn start
