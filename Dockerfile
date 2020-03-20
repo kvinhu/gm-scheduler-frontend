@@ -4,14 +4,6 @@ FROM node:12.14-alpine3.11 as builder
 # Label your dockerfile
 LABEL authors="Kevin Hu khu@liveperson.com"
 
-# install node v8 to run environment
-RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-RUN curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install
-RUN yum -y install nodejs wget
-
-# install yarn in global mode
-RUN npm install -g yarn
-
 # set app folder env variables - as per standard it should follow /liveperson/code/name_of_project
 ENV LP_HOME="/liveperson"
 ENV APP_CODE="${LP_HOME}/code/na-gm_scheduler-frontend"
@@ -30,6 +22,3 @@ COPY . .
 
 # install your global dependencies
 RUN yarn install && yarn cache clean
-
-# start server and provide port that you will expose
-CMD yarn start
