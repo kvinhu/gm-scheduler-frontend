@@ -1,6 +1,8 @@
 # install OS layer to your dockerfile
 FROM node:12.14-alpine3.11 as builder
 
+RUN apk add yarn
+
 # Label your dockerfile
 LABEL authors="Kevin Hu khu@liveperson.com"
 
