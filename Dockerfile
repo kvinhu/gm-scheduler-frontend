@@ -1,6 +1,8 @@
 # install OS layer to your dockerfile
 FROM node:12.14-alpine3.11 as builder
 
+RUN apk add yarn
+
 # Label your dockerfile
 LABEL authors="Kevin Hu khu@liveperson.com"
 
@@ -20,5 +22,7 @@ COPY package.json ${APP_CODE}
 # copy files that are required for the app to work - modify the lines accordingly
 COPY . . 
 
-# install your global dependencies
+# install your global dependencies and build
 RUN yarn install && yarn cache clean
+
+RUN yarn build
