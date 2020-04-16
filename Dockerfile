@@ -15,7 +15,7 @@ RUN mkdir -p ${APP_CODE}
 WORKDIR ${APP_CODE}
 
 # install external dependencies
-#COPY package.json ${APP_CODE}
+COPY package.json ${APP_CODE}
 
 # copy files that are required for the app to work - modify the lines accordingly
 COPY . . 
