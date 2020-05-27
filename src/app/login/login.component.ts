@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    window.open('/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");
+    window.open('https://gmsch.dev.fs.liveperson.com/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");
     let listener = window.addEventListener('message', (message) => {
       //message will contain facebook user and details
       // console.log(message.data.user)
