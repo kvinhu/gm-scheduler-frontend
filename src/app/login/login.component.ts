@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
       //message will contain facebook user and details
       console.log(message)
       localStorage.setItem("bearer", message.data.user);
-      this.router.navigate(["/dashboard"])
+      //this.router.navigate(["/dashboard"])
     });    
   }
 }
