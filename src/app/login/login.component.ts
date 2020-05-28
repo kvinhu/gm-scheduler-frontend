@@ -87,12 +87,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    let listener = window.addEventListener('message', (message) => {
+    window.open('/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");
+    window.addEventListener('message', (message) => {
       //message will contain facebook user and details
       console.log(message)
       localStorage.setItem("bearer", message.data.user);
       this.router.navigate(["/dashboard"])
-    });  
-    window.open('/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");  
+    });    
   }
 }
