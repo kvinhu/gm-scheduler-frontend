@@ -25,4 +25,4 @@ COPY . .
 # install your global dependencies and build
 RUN yarn install && yarn cache clean
 
-RUN yarn build
+RUN yarn start
