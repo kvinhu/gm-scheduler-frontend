@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     window.open('/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");
     let listener = window.addEventListener('message', (message) => {
+      console.log('event listener added')
       //message will contain facebook user and details
       console.log('MESSAGE: ', message);
       console.log('DATA: ', message.data)
