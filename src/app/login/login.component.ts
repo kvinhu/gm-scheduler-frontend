@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
       console.log('MESSAGE BEARER: ', message.data.user)
       localStorage.setItem("bearer", message.data.user);
       console.log('LOCAL STORAGE BEARER: ', window.localStorage.bearer)
-      this.router.navigate(["/dashboard"])
+      //this.router.navigate(["/dashboard"])
     });    
   }
 }
