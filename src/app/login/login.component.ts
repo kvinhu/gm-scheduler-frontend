@@ -86,17 +86,38 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  localStorageSetItem(key: string, value: string) {
+    return Promise.resolve().then(() => {
+      localStorage.setItem(key, value);
+    });
+  }
+
+  localStorageGetItem(key: string) {
+    return Promise.resolve().then(() => {
+      return localStorage.getItem(key);
+    });
+  }
+
   onSubmit() {
-    window.open('/api/auth/login',"mywindow","location=1,status=1,scrollbars=1, width=800,height=800");
-    let listener = window.addEventListener('message', (message) => {
-      console.log('event listener added')
+    window.open(
+      "/api/auth/login",
+      "mywindow",
+      "location=1,status=1,scrollbars=1, width=800,height=800"
+    );
+    let listener = window.addEventListener("message", message => {
+      //console.log('event listener added')
       //message will contain facebook user and details
-      console.log('MESSAGE: ', message);
-      console.log('DATA: ', message.data)
-      console.log('MESSAGE BEARER: ', message.data.user)
-      localStorage.setItem("bearer", message.data.user);
-      console.log('LOCAL STORAGE BEARER: ', window.localStorage.bearer)
-      this.router.navigate(["/dashboard"])
-    });    
+      //console.log('MESSAGE: ', message);
+      //console.log('DATA: ', message.data)
+      //console.log('MESSAGE BEARER: ', message.data.user)
+      this.localStorageSetItem("bearer", message.data.user)
+        .then(() => {
+          return this.localStorageGetItem("bearer");
+        })
+        .then(value => {
+          console.log("Value has been set to:", value);
+          this.router.navigate(["/dashboard"]);
+        });
+    });
   }
 }
