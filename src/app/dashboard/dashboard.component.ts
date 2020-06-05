@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit {
   loggedIn: boolean = false;
 
   constructor(private los: GetServicesService, private login: LoginService, private router: Router) {
+    
+  }
+
+  ngOnInit() {
     let bearer = localStorage.getItem('bearer');
     if(!bearer) {
           this.router.navigate(['login'])
@@ -23,19 +27,16 @@ export class DashboardComponent implements OnInit {
       this.login.getToken(bearer).subscribe((message: any) => {
         console.log(message)
         this.loggedIn = true;
+        this.los.getAll().subscribe((services: LineOfService[]) => {
+          this.services = services.map(service => timesTo_hhmmss(service));
+          this.view = services[0];
+        });
       },
       (err) => {
         localStorage.setItem("bearer", "");
           this.router.navigate(['login'])
       })
     }
-  }
-
-  ngOnInit() {
-    this.los.getAll().subscribe((services: LineOfService[]) => {
-      this.services = services.map(service => timesTo_hhmmss(service));
-      this.view = services[0];
-    });
   }
 
   public onChange(event): void {
