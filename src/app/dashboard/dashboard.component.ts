@@ -33,8 +33,9 @@ export class DashboardComponent implements OnInit {
         });
       },
       (err) => {
-        localStorage.setItem("bearer", "");
-          this.router.navigate(['login'])
+        console.log(err)
+        //localStorage.setItem("bearer", "");
+          //this.router.navigate(['login'])
       })
     }
   }
