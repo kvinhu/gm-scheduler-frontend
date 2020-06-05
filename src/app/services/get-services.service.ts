@@ -46,7 +46,7 @@ export class GetServicesService {
     //const headers = generateHeaders('get');
     let endpoint = getEndpoint('/api/services');
     return this.http.get(endpoint)
-    .pipe(catchError(this.processhttp.handleError))
+    //.pipe(catchError(this.processhttp.handleError))
   }
 
   updateModifiedDay(row: ModifiedDay): Observable<any> {
