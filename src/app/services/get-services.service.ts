@@ -43,9 +43,9 @@ export class GetServicesService {
   }
 
   getAll(): Observable<any> {
-    const headers = generateHeaders('get');
+    //const headers = generateHeaders('get');
     let endpoint = getEndpoint('/api/services');
-    return this.http.get(endpoint, { headers })
+    return this.http.get(endpoint)
     .pipe(catchError(this.processhttp.handleError))
   }
 
