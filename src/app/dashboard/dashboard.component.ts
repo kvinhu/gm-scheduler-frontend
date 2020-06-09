@@ -27,21 +27,21 @@ export class DashboardComponent implements OnInit {
       //   this.router.navigate(["login"]);
       // } else {
         console.log(bearer)
-        this.login.getToken(bearer).subscribe(
-          (message: any) => {
-            console.log("Success from get token route:", message);
-            this.loggedIn = true;
-            this.los.getAll().subscribe((services: LineOfService[]) => {
-              this.services = services.map(service => timesTo_hhmmss(service));
-              this.view = services[0];
-            });
-          },
-          err => {
-            console.log("Error from get token route:", err);
-            //localStorage.setItem("bearer", "");
-            //this.router.navigate(['login'])
-          }
-        );
+        // this.login.getToken(bearer).subscribe(
+        //   (message: any) => {
+        //     console.log("Success from get token route:", message);
+        //     this.loggedIn = true;
+        //     this.los.getAll().subscribe((services: LineOfService[]) => {
+        //       this.services = services.map(service => timesTo_hhmmss(service));
+        //       this.view = services[0];
+        //     });
+        //   },
+        //   err => {
+        //     console.log("Error from get token route:", err);
+        //     //localStorage.setItem("bearer", "");
+        //     //this.router.navigate(['login'])
+        //   }
+        // );
       // }
     });
   }
