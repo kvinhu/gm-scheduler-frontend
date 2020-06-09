@@ -23,9 +23,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.localStorageGetItem("bearer").then(bearer => {
-      if (!bearer) {
-        this.router.navigate(["login"]);
-      } else {
+      // if (!bearer) {
+      //   this.router.navigate(["login"]);
+      // } else {
+        console.log(bearer)
         this.login.getToken(bearer).subscribe(
           (message: any) => {
             console.log("Success from get token route:", message);
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
             //this.router.navigate(['login'])
           }
         );
-      }
+      // }
     });
   }
 
