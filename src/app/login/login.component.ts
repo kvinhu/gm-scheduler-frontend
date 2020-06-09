@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
         })
         .then(value => {
           console.log("Value has been set to:", value);
-          //if(value) this.router.navigate(["/dashboard"]);
+          if(value) this.router.navigate(["/dashboard"]);
         });
     });
   }
