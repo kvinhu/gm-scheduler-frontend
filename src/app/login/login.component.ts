@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
     let listener = window.addEventListener("message", message => {
       //console.log('event listener added')
       //message will contain facebook user and details
-      //console.log('MESSAGE: ', message);
+      console.log('MESSAGE: ', message);
       //console.log('DATA: ', message.data)
       //console.log('MESSAGE BEARER: ', message.data.user)
       this.localStorageSetItem("bearer", message.data.user)
