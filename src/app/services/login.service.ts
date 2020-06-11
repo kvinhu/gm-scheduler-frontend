@@ -22,7 +22,7 @@ export class LoginService {
   public getToken(token: string): Observable<any> {
     let endpoint = getEndpoint(`/api/auth/token`, token)
     return this.http.get(endpoint)
-    //.pipe(catchError(this.processhttp.handleError))
+    .pipe(catchError(this.processhttp.handleError))
   }
 
   public login(credentials: {account: number, username: string, password: string}): Observable<any> {

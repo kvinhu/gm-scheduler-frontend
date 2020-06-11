@@ -105,17 +105,13 @@ export class LoginComponent implements OnInit {
       "location=1,status=1,scrollbars=1, width=800,height=800"
     );
     let listener = window.addEventListener("message", message => {
-      //console.log('event listener added')
-      //message will contain facebook user and details
       console.log('MESSAGE: ', message);
-      //console.log('DATA: ', message.data)
-      //console.log('MESSAGE BEARER: ', message.data.user)
       this.localStorageSetItem("bearer", message.data.user)
         .then(() => {
           return this.localStorageGetItem("bearer");
         })
         .then(value => {
-          console.log("Value has been set to:", value);
+          //console.log("Value has been set to:", value);
           if(value) this.router.navigate(["/dashboard"]);
         });
     });

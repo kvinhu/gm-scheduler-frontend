@@ -3,7 +3,7 @@ import * as moment from "moment";
 
 export const getEndpoint = (api: string, serviceId?: any): string => {
   if (serviceId) {
-    return `https://gmsch.dev.fs.liveperson.com/${api}/${serviceId}`;
+    return `${api}/${serviceId}`;
   } else {
     return api;
   }
