@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
       "location=1,status=1,scrollbars=1, width=800,height=800"
     );
     let listener = window.addEventListener("message", message => {
-      console.log('MESSAGE: ', message);
+      //console.log('MESSAGE: ', message);
       this.localStorageSetItem("bearer", message.data.user)
         .then(() => {
           return this.localStorageGetItem("bearer");
