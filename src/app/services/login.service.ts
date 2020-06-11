@@ -27,7 +27,7 @@ export class LoginService {
 
   public login(credentials: {account: number, username: string, password: string}): Observable<any> {
     // will have to adjust this call
-    let endpoint = getEndpoint(`https://gmsch.dev.fs.liveperson.com/api/auth/login`)
+    let endpoint = getEndpoint(`/api/auth/login`)
     return this.http.get(endpoint)
     .pipe(catchError(this.processhttp.handleError))
   }
